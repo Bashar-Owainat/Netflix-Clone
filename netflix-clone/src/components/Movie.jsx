@@ -3,7 +3,16 @@ import Button from 'react-bootstrap/Button';
 import ModalMovie from './ModalMovie';
 
 
-function Movie({ movie }) {
+function Movie({ movie, getFavMovie }) {
+
+    function handelDelete(id){
+        const url = `${process.env.REACT_APP_SERVER}/deletemovie/${id}`;
+        const response = fetch(url, {
+          method: "DELETE", // *GET, POST, PUT, DELETE, etc
+        }).then(() => {
+              getFavMovie();
+        });
+    }
 
     return (
         <>
@@ -25,8 +34,10 @@ function Movie({ movie }) {
 
                         poster_path: {movie.poster_path}
                     </Card.Text>
-                   
-                    <ModalMovie movie={movie}/>
+                    <Button onClick={() => handelDelete(movie.id)} variant="primary">
+                        Delete
+                    </Button>
+
                 </Card.Body>
             </Card></>
     )
