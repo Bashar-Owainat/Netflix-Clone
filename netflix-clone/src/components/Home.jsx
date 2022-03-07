@@ -1,6 +1,8 @@
 import { findByLabelText } from "@testing-library/react";
 import { useState, useEffect } from "react";
+import { Navbar } from "react-bootstrap";
 import MovieList from "./MovieList";
+import NavbarMovie from "./NavbarMovie";
 
 function Home() {
 
@@ -19,10 +21,14 @@ function Home() {
     }, []);
 
     return (
+        <>
+        
+        <NavbarMovie/> 
         <div style={{display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", padding:"20px"}}>
 
         {movies && <MovieList movies={movies}/>}
         </div>
+        </>
         
     )
 }
